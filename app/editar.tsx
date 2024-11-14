@@ -1,6 +1,7 @@
 import { Text, View, Pressable, TextInput } from "react-native";
 import { useState } from 'react';
 import { Estilos } from "@/constants/Styles";
+import { readAsStringAsync } from 'expo-file-system';
 import { File, Paths } from 'expo-file-system/next';
 
 export default function Index() {
@@ -12,26 +13,55 @@ export default function Index() {
   const [respuesta3Val, setRespuesta3Val] = useState('');
   const [respuesta4Val, setRespuesta4Val] = useState('');
 
-  function toggleAgregarPregunta(){
-    //setAgregarPregunta(current => (current === false ? true : false));
-    console.log(Paths.dirname(Paths.document));
-    // try{
-    //   const file = new File(Paths.document, 'ejemplo.txt');
-    //   file.create();
-    //   file.write('Hola a todos');
-    //   console.log(file.text());
-    // }catch(error){
-    //   console.log(error);
-    // }
+  const toggleAgregarPregunta = async () => {
+    setAgregarPregunta(current => (current === false ? true : false));
+    // console.log(Paths.dirname(Paths.document));
+  }
+  
+  function guardarArchivo(contenido){
+    try{
+      const file = new File(Paths.document, 'ejemplo.txt');
+      file.create();
+      file.write(contenido);
+      console.log(file.text());
+      const content = JSON.parse(file.text());
+      console.log(typeof(content));
+      console.log(content['pregunta'])
+      // const content = await readAsStringAsync(file.uri);
+      // console.log(content);
+    }catch(error){
+      console.log(error);
+    }
+  }
+  
+  const leerArchivo = async () => {
+    try{
+      const file = new File(Paths.document, 'ejemplo.txt');
+      const contenido = await readAsStringAsync(file.uri);
+      console.log(contenido);
+      const content = JSON.parse(contenido);
+      // console.log(typeof(content));
+      // console.log(content);
+      return content;
+    }catch(error){
+      console.log(error)
+    }
   }
 
-  function onButtonGuardar(){
+  const onButtonGuardar = async () => {
     const form = new FormData();
     form.append('pregunta', preguntaVal);
     form.append('respuesta1', respuesta1Val);
     form.append('respuesta2', respuesta2Val);
     form.append('respuesta3', respuesta3Val);
     form.append('respuesta4', respuesta4Val);
+    const object = {};
+    form.forEach(function(value, key){
+      object[key] = value;
+    });
+    var json = JSON.stringify(object);
+    console.log(json);
+    guardarArchivo(json);
   }
 
   return (
