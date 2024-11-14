@@ -1,6 +1,7 @@
 import { Text, View, Pressable, TextInput } from "react-native";
 import { useState } from 'react';
 import { Estilos } from "@/constants/Styles";
+import { File, Paths } from 'expo-file-system/next';
 
 export default function Index() {
 
@@ -12,7 +13,16 @@ export default function Index() {
   const [respuesta4Val, setRespuesta4Val] = useState('');
 
   function toggleAgregarPregunta(){
-    setAgregarPregunta(current => (current === false ? true : false));
+    //setAgregarPregunta(current => (current === false ? true : false));
+    console.log(Paths.dirname(Paths.document));
+    // try{
+    //   const file = new File(Paths.document, 'ejemplo.txt');
+    //   file.create();
+    //   file.write('Hola a todos');
+    //   console.log(file.text());
+    // }catch(error){
+    //   console.log(error);
+    // }
   }
 
   function onButtonGuardar(){
