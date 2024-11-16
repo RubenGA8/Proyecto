@@ -12,56 +12,68 @@ export default function Index() {
   const [respuesta2Val, setRespuesta2Val] = useState('');
   const [respuesta3Val, setRespuesta3Val] = useState('');
   const [respuesta4Val, setRespuesta4Val] = useState('');
-
+  const [file, setFile] = useState(new File(Paths.document,'encuesta.txt'));
+  
   const toggleAgregarPregunta = async () => {
     setAgregarPregunta(current => (current === false ? true : false));
-    // console.log(Paths.dirname(Paths.document));
   }
   
-  function guardarArchivo(contenido){
+  function guardarArchivo(){
     try{
-      const file = new File(Paths.document, 'ejemplo.txt');
+      console.log(encuesta);
       file.create();
-      file.write(contenido);
-      console.log(file.text());
-      const content = JSON.parse(file.text());
-      console.log(typeof(content));
-      console.log(content['pregunta'])
+      file.write(JSON.stringify(encuesta));
+      // console.log(file.text());
+      // const content = JSON.parse(file.text());
+      // console.log(typeof(content));
+      // console.log(content['pregunta'])
       // const content = await readAsStringAsync(file.uri);
       // console.log(content);
     }catch(error){
       console.log(error);
+      var preguntas = {'preguntas':[]};
     }
   }
   
   const leerArchivo = async () => {
     try{
-      const file = new File(Paths.document, 'ejemplo.txt');
       const contenido = await readAsStringAsync(file.uri);
+      setEncuesta(JSON.parse(contenido));
       console.log(contenido);
-      const content = JSON.parse(contenido);
+      // const content = JSON.parse(contenido);
       // console.log(typeof(content));
       // console.log(content);
-      return content;
+      //return content;
     }catch(error){
-      console.log(error)
+      console.log('Ocurrio un error al leer el archivo');
+      console.log(error);
+      var preguntas = {'preguntas':[]};
+      setEncuesta(preguntas);
+      guardarArchivo();
     }
   }
+  
+  const [encuesta, setEncuesta] = useState(leerArchivo);
 
   const onButtonGuardar = async () => {
     const form = new FormData();
-    form.append('pregunta', preguntaVal);
+    // form.append('pregunta', preguntaVal);
     form.append('respuesta1', respuesta1Val);
     form.append('respuesta2', respuesta2Val);
     form.append('respuesta3', respuesta3Val);
     form.append('respuesta4', respuesta4Val);
     const object = {};
-    form.forEach(function(value, key){
+    form.forEach(function(value, key){//convierte formulario a json
       object[key] = value;
     });
+    // console.log(object);
     var json = JSON.stringify(object);
-    console.log(json);
-    guardarArchivo(json);
+    var preguntas = {'preguntas':[
+      {preguntaVal: object}
+    ]};
+    // console.log(preguntas['preguntas'][0]);
+    setEncuesta(encuesta)
+    guardarArchivo();
   }
 
   return (
