@@ -148,9 +148,9 @@ export default function Index() {
           <TextInput placeholder='Respuesta 4' onChangeText={setRespuesta4Val}></TextInput>
           <Pressable onPress={onButtonGuardar}><Text>Guardar pregunta</Text></Pressable>
           <Pressable onPress={getPreguntas}><Text>get preguntas</Text></Pressable>
-          {hayPreguntas? (
+          {/*hayPreguntas? (
             //tienes que hacer la funcion de que ya existen preguntas y otra funcion para que regtrese el for de como se verían las preguntas. desto lo regresa ya como html
-          ):undefined}
+          ):undefined*/}
         </View>
         
       ):(

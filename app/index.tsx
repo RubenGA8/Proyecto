@@ -5,22 +5,29 @@ import { Estilos } from "@/constants/Styles";
 export default function Index() {
   function onButtonEdit(){
     console.log('Click');
-    router.replace('/editar');
+    //router.replace('/editar');
+    router.navigate('/editar')
   }
   function onButtonList(){
     console.log('Click');
-    router.replace('/lista_encuestas');
+    router.navigate('/lista_encuestas');
+    //router.replace('/lista_encuestas');
+  }
+
+  function onButtonCrear(){
+    router.navigate('/crear');
   }
   
   return (
     <View style={Estilos.Principal}>
     <Text>Edit app/index.tsx to edit this screen.</Text>
-    <Link href='/editar'>
-      <Pressable onPress={onButtonEdit}><Text>Editar Cuestionario</Text></Pressable>
+    <Link href='/crear'>
+      <Pressable onPress={onButtonEdit}><Text>Crear Cuestionario</Text></Pressable>
     </Link>
     <Link href='/lista_encuestas'>
       <Pressable onPress={onButtonList}><Text>Lista encuestas</Text></Pressable>
     </Link>
+      <Pressable onPress={onButtonCrear}><Text>Crear Lista</Text></Pressable>
     </View>
   );
 }
