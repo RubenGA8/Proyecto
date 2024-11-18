@@ -94,9 +94,11 @@ export default function Index() {
       response => response.json()
     ).then(
       data => {
-        console.log('Respuesta guardada:',data)
+        console.log('Respuesta guardada:',data);
+        
       }
     )
+
   }
 
   const getPreguntas = async () => {
