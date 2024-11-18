@@ -3,6 +3,7 @@ import { Link, router } from 'expo-router';
 import { useFonts } from "expo-font";
 
 import { Estilos } from "@/constants/Styles";
+import { ContextEncuesta } from './context';
 
 export default function Index() {
   function onButtonEdit(){
@@ -36,7 +37,7 @@ export default function Index() {
     <Link href='/lista_encuestas'>
       <Pressable onPress={onButtonList}><Text>Lista encuestas</Text></Pressable>
     </Link>
-      <Pressable onPress={onButtonCrear}><Text>Crear Lista</Text></Pressable>
+      {/* <Pressable onPress={onButtonCrear}><Text>Crear Lista</Text></Pressable> */}
     </View>
   );
 }

@@ -59,14 +59,10 @@ export default function Index() {
                 const enc_data = data['encuesta'];
 
                 // console.log(enc_data);
-                var tot: any[] = [];
-                var preguntas: any[] = [];
-                var respuestas: any[] = [];
                 var aux_preguntas: any[] = [];
                 var id_pregunta = enc_data[0][3];
                 var aux_respuestas: any[] = [];
                 var aux_pregunta_nom;
-                var aux_pregunta_id;
                 for(var i in enc_data){//for de preguntas
                     if(id_pregunta == enc_data[i][3]){//si es la misma pregunta
                         aux_pregunta_nom = enc_data[i][0]
@@ -76,9 +72,9 @@ export default function Index() {
                             respuesta: enc_data[i][1],
                             numero: enc_data[i][2],
                         };
-                        console.log("---------respuesta---------");
+                        // console.log("---------respuesta---------");
                         aux_respuestas.push(aux_respuesta_obj);
-                        console.log(aux_respuestas);
+                        // console.log(aux_respuestas);
                     }else{
                         var aux_pregunta_obj = {
                             pregunta_id: id_pregunta,
@@ -107,26 +103,12 @@ export default function Index() {
                         };
                         aux_preguntas.push(aux_pregunta_obj);
                     }
-                    // var aux = {
-                        //     encuesta:nombre_lista,
-                        //     id_pregunta: enc_data[i][3],
-                        //     id_respuesta: enc_data[i][4],
-                        //     pregunta: enc_data[i][0],
-                        //     respuesta: enc_data[i][1],
-                        //     numero: enc_data[i][2]
-                        // };
-                        // tot.push(aux);
-                    }
+                }
                 var enc = {
                     encuesta:nombre_lista,
                     preguntas: aux_preguntas
                 };
-                // console.log("---------Encuesta---------");
-                // var r = enc['preguntas'][0];
-                // console.log(r['respuestas']);
-                // console.log(tot);
                 setEncuesta(enc);
-                // console.log(encuesta);
                 router.navigate('/encuesta');
             }
         )
