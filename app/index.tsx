@@ -1,5 +1,7 @@
 import { Text, View, Pressable, Button } from 'react-native';
 import { Link, router } from 'expo-router';
+import { useFonts } from "expo-font";
+
 import { Estilos } from "@/constants/Styles";
 
 export default function Index() {
@@ -17,6 +19,13 @@ export default function Index() {
   function onButtonCrear(){
     router.navigate('/crear');
   }
+
+  const [fontsLoaded] = useFonts({
+    'EABold': require("../assets/fonts/EABold.ttf"),
+    'EASemiBold': require("../assets/fonts/EASemiBold.ttf"),
+    'EAMedium': require("../assets/fonts/EAMedium.ttf"),
+    'EARegular': require("../assets/fonts/EARegular.ttf"),
+  });
   
   return (
     <View style={Estilos.Principal}>
