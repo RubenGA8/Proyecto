@@ -135,21 +135,26 @@ export default function Index() {
 
   return (
     <SafeAreaView style={Estilos.Principal}>
-        <Text>Encuestas</Text>
-        <Pressable onPress={verInfo}><Text>Hola</Text></Pressable>
+        <View style={Estilos.ContenedorTitulos}>
+            <Text style={Estilos.TextoTitulo}>Encuestas</Text>
+            <Pressable onPress={verInfo}><Text>Hola</Text></Pressable>
+        </View>
+
+        <View style={Estilos.Contenedor}>
             {hayEncuestas?(
                 <View>
                     {encuestas.map((encuesta)=>{
                         return (
                             <View key={encuesta.id}>
-                                <Pressable  onPress={()=>onPressLista(encuesta.id, encuesta.nombre)}>
-                                    <Text>{encuesta.nombre}</Text>
+                                <Pressable style={Estilos.Boton} onPress={()=>onPressLista(encuesta.id, encuesta.nombre)}>
+                                    <Text style={Estilos.TextoNormal}>{encuesta.nombre}</Text>
                                 </Pressable>
                             </View>
                         );
                     })}
                 </View>
             ):undefined}
+        </View>
     </SafeAreaView>
   );
 }
