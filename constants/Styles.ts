@@ -10,6 +10,13 @@ export const Estilos = StyleSheet.create(
             height: 200,
         },
 
+        ImagenFondo:{
+            flex: 1,
+            flexDirection: "column",
+            height: height,
+            width: width,
+        },
+
         Boton:{
             flexDirection: "row",
             backgroundColor: "#FFCA00",
@@ -29,6 +36,9 @@ export const Estilos = StyleSheet.create(
 
         ContenedorScroll:{
             flex: 1,
+            flexDirection: "row",
+            alignContent: "center",
+            justifyContent: "center",
         },
 
         Contenedor:{
@@ -40,7 +50,11 @@ export const Estilos = StyleSheet.create(
 
         TextoTitulo:{
             fontFamily: "EABold",
-            fontSize: 200 * 0.035,
+            fontSize: height * 0.045,
+            textShadowColor: 'rgba(0,0,0,0.4)', // Color de la sombra
+            textShadowOffset: { width: 5, height: 5 }, // Desplazamiento en x e y
+            textShadowRadius: 10, // Desenfoque de la sombra
+
         },
 
         TextoNormal:{

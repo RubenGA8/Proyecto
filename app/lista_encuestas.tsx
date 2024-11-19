@@ -1,4 +1,4 @@
-import {Text, View, Pressable, Button, ScrollView, FlatList} from 'react-native';
+import {Text, View, Pressable, Button, ScrollView, FlatList, ImageBackground} from 'react-native';
 import { Link, router } from 'expo-router';
 import { useState, useContext } from 'react'
 import { Estilos } from '@/constants/Styles';
@@ -117,28 +117,29 @@ export default function Index() {
 
   return (
     <SafeAreaView style={Estilos.Principal}>
-        <View style={Estilos.ContenedorTitulos}>
-            <Text style={Estilos.TextoTitulo}>Encuestas</Text>
-            <Pressable onPress={verInfo}><Text>Hola</Text></Pressable>
-        </View>
-
-        <View style={Estilos.ContenedorScroll} >
-            {hayEncuestas?(
-                <View>
-                    <FlatList data={encuestas}>
-                        {encuestas.map((encuesta)=>{
-                            return (
-                                <View key={encuesta.id}>
-                                    <Pressable style={Estilos.Boton} onPress={()=>onPressLista(encuesta.id, encuesta.nombre)}>
-                                        <Text style={Estilos.TextoNormal}>{encuesta.nombre}</Text>
-                                    </Pressable>
-                                </View>
-                            );
-                        })}
-                    </FlatList>
-                </View>
-            ):undefined}
+        <ImageBackground source={require("../assets/images/FondoEncuestas.png")} resizeMode="cover" style={Estilos.ImagenFondo}>
+            <View style={Estilos.ContenedorTitulos}>
+                <Text style={Estilos.TextoTitulo}>Encuestas</Text>
+                <Pressable onPress={verInfo}><Text>Hola</Text></Pressable>
             </View>
+            <View style={Estilos.ContenedorScroll} >
+                {hayEncuestas?(
+                    <View>
+                        <ScrollView showsVerticalScrollIndicator={false}>
+                            {encuestas.map((encuesta)=>{
+                                return (
+                                    <View key={encuesta.id}>
+                                        <Pressable style={Estilos.Boton} onPress={()=>onPressLista(encuesta.id, encuesta.nombre)}>
+                                            <Text style={Estilos.TextoNormal}>{encuesta.nombre}</Text>
+                                        </Pressable>
+                                    </View>
+                                );
+                            })}
+                        </ScrollView>
+                    </View>
+                ):undefined}
+            </View>
+        </ImageBackground>
     </SafeAreaView>
   );
 }
