@@ -16,6 +16,7 @@ export default function Index() {
     console.log("Contexto sin tragarsela sin pretexto");
     console.log(encuesta)
     console.log("Queremos extraer: " + encuesta["encuesta"])
+    router.navigate('/resultados');
   }
 
   return (
