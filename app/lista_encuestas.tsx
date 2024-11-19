@@ -138,7 +138,6 @@ export default function Index() {
                     </FlatList>
                 </View>
             ):undefined}
-        </View>
     </SafeAreaView>
   );
 }
