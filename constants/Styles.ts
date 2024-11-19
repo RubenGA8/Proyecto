@@ -16,7 +16,7 @@ export const Estilos = StyleSheet.create(
             flexDirection: "row",
             backgroundColor: "#FFCA00",
             borderRadius: 7,
-            margin: "2%",
+            margin: "3%",
             padding: "2.5%",
             justifyContent: "center",
         },
@@ -31,6 +31,8 @@ export const Estilos = StyleSheet.create(
 
         ContenedorScroll:{
             flex: 1,
+            //width: "75%",
+            backgroundColor: '#9819e1',
         },
 
         Contenedor:{

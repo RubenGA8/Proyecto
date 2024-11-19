@@ -224,7 +224,7 @@ export default function Index() {
                   </View>
                 );
               })}
-              <Pressable onPress={Estilos.Boton}><Text>Guardar encuesta</Text></Pressable>
+              <Pressable style={Estilos.Boton}><Text>Guardar encuesta</Text></Pressable>
             </View>
           ):undefined}
         </View>
