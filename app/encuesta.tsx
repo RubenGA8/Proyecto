@@ -46,9 +46,9 @@ export default function Index() {
                   </View>
               );
             })}
+        <Pressable onPress={click}><Text>Ver respuestas</Text></Pressable>
           </ScrollView>
         </View>
-      <Pressable onPress={click}><Text>Hola</Text></Pressable>
       </ImageBackground>
     </View>
   );
