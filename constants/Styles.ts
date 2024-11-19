@@ -8,8 +8,8 @@ export const Estilos = StyleSheet.create(
             flex: 1,
             justifyContent: "center",
             alignItems: "center",
-            width: width,
-            height: height,
+            width: 100,
+            height: 200,
         },
 
         ImagenFondo:{
@@ -56,6 +56,7 @@ export const Estilos = StyleSheet.create(
             textShadowColor: 'rgba(0,0,0,0.4)', // Color de la sombra
             textShadowOffset: { width: 5, height: 5 }, // Desplazamiento en x e y
             textShadowRadius: 10, // Desenfoque de la sombra
+
         },
 
         TextoNormal:{

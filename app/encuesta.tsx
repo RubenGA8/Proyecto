@@ -4,6 +4,7 @@ import { Estilos } from '@/constants/Styles';
 import { useRoute } from "@react-navigation/native"
 import { ContextEncuesta } from './context';
 import { useState, useContext } from 'react';
+import { RadioButton } from 'react-native-paper'
 
 export default function Index() {  
   const {encuesta} = useContext(ContextEncuesta);
@@ -12,16 +13,6 @@ export default function Index() {
   function click(){
     console.log("dentro de encuesta");
     console.log(preguntas);
-  }
-
-  function lista(){
-    preguntas.map((pregunta)=>{
-      return(
-        <View key={pregunta.pregunta_id}>
-          <Text>{pregunta.pregunta}</Text>
-        </View>
-      );
-    })
   }
 
   return (
