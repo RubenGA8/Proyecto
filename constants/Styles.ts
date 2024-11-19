@@ -1,6 +1,4 @@
-import { StyleSheet, Dimensions } from "react-native";
-
-const { width, height } = Dimensions.get('window');
+import { StyleSheet } from "react-native";
 
 export const Estilos = StyleSheet.create(
     {
@@ -23,7 +21,7 @@ export const Estilos = StyleSheet.create(
             flexDirection: "row",
             backgroundColor: "#FFCA00",
             borderRadius: 7,
-            margin: "3%",
+            margin: "2%",
             padding: "2.5%",
             justifyContent: "center",
         },

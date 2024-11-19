@@ -40,10 +40,6 @@ export default function Index() {
     const [hayEncuestas, setHayEncuestas] = useState(false);
     const {encuesta, setEncuesta} = useContext(ContextEncuesta);
 
-    const Extraibles = {
-
-    }
-
     function verInfo(){
         console.log(encuestas);
     }
@@ -126,7 +122,6 @@ export default function Index() {
                 <Text style={Estilos.TextoTitulo}>Encuestas</Text>
                 <Pressable onPress={verInfo}><Text>Hola</Text></Pressable>
             </View>
-
             <View style={Estilos.ContenedorScroll} >
                 {hayEncuestas?(
                     <View>
