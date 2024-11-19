@@ -25,7 +25,12 @@ export const Estilos = StyleSheet.create(
             flexDirection: "column",
             justifyContent: "flex-start",
             alignItems: "center",
+            marginTop: "3.5%",
             marginBottom: "5.5%",
+        },
+
+        ContenedorScroll:{
+            flex: 1,
         },
 
         Contenedor:{

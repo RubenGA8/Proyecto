@@ -1,4 +1,4 @@
-import { Text, View, Pressable, Button, ScrollView } from 'react-native';
+import {Text, View, Pressable, Button, ScrollView, FlatList} from 'react-native';
 import { Link, router } from 'expo-router';
 import { useState, useContext } from 'react'
 import { Estilos } from '@/constants/Styles';
@@ -122,18 +122,20 @@ export default function Index() {
             <Pressable onPress={verInfo}><Text>Hola</Text></Pressable>
         </View>
 
-        <View style={Estilos.Contenedor}>
+        <View style={Estilos.ContenedorScroll} >
             {hayEncuestas?(
                 <View>
-                    {encuestas.map((encuesta)=>{
-                        return (
-                            <View key={encuesta.id}>
-                                <Pressable style={Estilos.Boton} onPress={()=>onPressLista(encuesta.id, encuesta.nombre)}>
-                                    <Text style={Estilos.TextoNormal}>{encuesta.nombre}</Text>
-                                </Pressable>
-                            </View>
-                        );
-                    })}
+                    <FlatList data={encuestas}>
+                        {encuestas.map((encuesta)=>{
+                            return (
+                                <View key={encuesta.id}>
+                                    <Pressable style={Estilos.Boton} onPress={()=>onPressLista(encuesta.id, encuesta.nombre)}>
+                                        <Text style={Estilos.TextoNormal}>{encuesta.nombre}</Text>
+                                    </Pressable>
+                                </View>
+                            );
+                        })}
+                    </FlatList>
                 </View>
             ):undefined}
         </View>
