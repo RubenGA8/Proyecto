@@ -74,6 +74,14 @@ export const Estilos = StyleSheet.create(
             textShadowRadius: 10, // Desenfoque de la sombra
         },
 
+        TextoSubtitulo:{
+            fontFamily: "EASemiBold",
+            fontSize: height * 0.03,
+            textShadowColor: 'rgba(0,0,0,0.4)', // Color de la sombra
+            textShadowOffset: { width: 5, height: 5 }, // Desplazamiento en x e y
+            textShadowRadius: 10, // Desenfoque de la sombra
+        },
+
         TextoDestacable:{
             fontFamily: "EAMedium",
             fontSize: height * 0.025,

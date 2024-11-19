@@ -1,4 +1,4 @@
-import { Text, View, Pressable, TextInput } from "react-native";
+import { Text, View, Pressable, TextInput, ImageBackground } from "react-native";
 import { useState } from 'react';
 import { Estilos } from "@/constants/Styles";
 import { endpoints } from "@/constants/endpoints";
@@ -26,6 +26,11 @@ export default function Index(){
 
     return(
         <View style={Estilos.Principal}>
+            <ImageBackground source={require("../assets/images/FondoCrear.png")} resizeMode="cover" style={Estilos.ImagenFondo}>
+                <View style={Estilos.Contenedor}>
+                    <View style={Estilos.ContenedorTitulos}>
+                        <Text style={Estilos.TextoTitulo}>Crear encuesta</Text>
+                    </View>
             {encuestaCreada?(
                 <View>
                     <Text>{encuestaVal}</Text>
@@ -40,9 +45,11 @@ export default function Index(){
                 <View>
                     <Text>Crear encuesta</Text>
                     <TextInput placeholder='Ingresa el nombre del cuestionario' onChangeText={setEncuestaVal}></TextInput>
-                    <Pressable onPress={toggleEncuesta}><Text>Guardar nombre</Text></Pressable>
+                    <Pressable onPress={toggleEncuesta}><Text>Guardar nombressss</Text></Pressable>
                 </View>
             )}
+                </View>
+            </ImageBackground>
         </View>
     );
 }
