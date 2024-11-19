@@ -7,9 +7,14 @@ import { ContextEncuesta } from './context';
 export default function Index() {
     const {encuesta, setEncuesta} = useContext(ContextEncuesta);
 
+    function click(){
+        console.log(encuesta);
+    }
+
     return(
         <View>
             <Text>resultados buenos</Text>
+            <Pressable onPress={click}>picame</Pressable>
         </View>
     );
 }
