@@ -1,72 +1,54 @@
-import { Text, View, Pressable, Button } from 'react-native';
+import { Text, View, Pressable, Button, ImageBackground, ScrollView } from 'react-native';
 import { Link, router } from 'expo-router';
 import { Estilos } from "@/constants/Styles";
 import { useState, useContext} from 'react'
 import { ContextEncuesta } from './context';
 import { PieChart } from 'react-native-chart-kit'
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 export default function Index() {
     const {encuesta, setEncuesta} = useContext(ContextEncuesta);
     const [colores] = useState(['rgba(225,19,19,1)', 'rgba(255, 162, 1, 1)', 'rgba(51, 30, 200, 1)', 'rgba(31, 141, 27, 1)'])
     function agregarColor(){
-        var aux = encuesta['preguntas'][0]['respuestas'];
-        for( var i in aux){
-            aux[parseInt(i)].color = colores[parseInt(i)];
+        // var aux = encuesta['preguntas'][0]['respuestas'];
+        // for( var i in aux){
+        //     aux[parseInt(i)].color = colores[parseInt(i)];
+        //     aux[parseInt(i)].name = aux[parseInt(i)].respuesta;
+        // }
+        // return aux;
+        var preg = encuesta['preguntas']
+        console.log(preg);
+        var aux = {};
+        for(var i in preg){
+            var res = preg[i]['respuestas'];
+            console.log(preg[parseInt(i)]);
+            for(var j in res){
+                res[parseInt(j)].color = colores[parseInt(j)];
+                res[parseInt(j)].name = res[parseInt(j)].respuesta;
+            }
         }
-        return aux;
+        return preg;
     }
     const [respuestas, setRespuestas] = useState(agregarColor)
     function click(){
-        console.log(encuesta);
-        var res = encuesta['preguntas'][0]['respuestas'];
-        console.log('------Respuestas------');
-        console.log(data2);
-    }
-    
-    const [data2, setData] = useState([
-        {color: "rgba(225,19,19,1)", numero: 7, name: "Jirafa", hola:6}, 
-        {color: "rgba(255, 162, 1, 1)", numero: 5, respuesta: "Pingüino", hola:6}, 
-        {color: "rgba(51, 30, 200, 1)", numero: 2, name: "Koala", hola:6}, 
-        {color: "rgba(31, 141, 27, 1)", numero: 6, name: "Tortuga", hola:6}
-    ]);
+        console.log(respuestas[0]['respuestas']);
+        // console.log(encuesta);
+        // var preg = encuesta['preguntas']
+        // console.log(preg);
+        // var aux = {};
+        // for(var i in preg){
+        //     var res = preg[i]['respuestas'];
+        //     console.log(preg[parseInt(i)]);
+        //     for(var j in res){
+        //         res[parseInt(i)].color = colores[parseInt(i)];
+        //         res[parseInt(i)].name = res[parseInt(i)].respuesta;
+        //     }
 
-    const data = [
-        {
-          name: "Seoul",
-          population: 21500000,
-          color: "rgba(131, 167, 234, 1)",
-          legendFontColor: "#7F7F7F",
-          legendFontSize: 15
-        },
-        {
-          name: "Toronto",
-          population: 2800000,
-          color: "#F00",
-          legendFontColor: "#7F7F7F",
-          legendFontSize: 15
-        },
-        {
-          name: "Beijing",
-          population: 527612,
-          color: "red",
-          legendFontColor: "#7F7F7F",
-          legendFontSize: 15
-        },
-        {
-          name: "New York",
-          population: 8538000,
-          color: "#ffffff",
-          legendFontColor: "#7F7F7F",
-          legendFontSize: 15
-        },
-        {
-          name: "Moscow",
-          population: 11920000,
-          color: "rgb(0, 0, 255)",
-          legendFontColor: "#7F7F7F",
-          legendFontSize: 15
-        }
-      ];
+        // }
+        // console.log(preg);
+        // console.log('------Respuestas------');
+        // console.log(respuestas);
+    }
 
       const chartConfig = {
         backgroundGradientFrom: "#1E2923",
@@ -80,20 +62,49 @@ export default function Index() {
       };
 
     return(
-        <View>
-            <Text>resultados buenos</Text>
-            <Pressable onPress={click}><Text>picame</Text></Pressable>
-            <PieChart
-                data={data2}
-                width={400}
-                height={300}
-                chartConfig={chartConfig}
-                accessor={"numero"}
-                backgroundColor={"transparent"}
-                paddingLeft={"15"}
-                center={[10, 10]}
-                absolute
-            />
-        </View>
+        <SafeAreaView style={Estilos.Principal}>
+            <ImageBackground source={require('../assets/images/FondoEncuestas.png')} resizeMode='cover' style={Estilos.ImagenFondo}>
+                <View style={Estilos.ContenedorTitulos}>
+                    <Text style={Estilos.TextoTitulo}>resultados buenos</Text>
+                    <Pressable onPress={click}><Text>picame</Text></Pressable>
+                </View>
+                <View style={Estilos.ContenedorScroll}>
+                    <View>
+                        <ScrollView showsVerticalScrollIndicator={false}>
+                            {/* <Text>{respuestas[0]['pregunta']}</Text>
+                            <PieChart
+                                data={respuestas[0]['respuestas']}
+                                width={400}
+                                height={300}
+                                chartConfig={chartConfig}
+                                accessor={"numero"}
+                                backgroundColor={"transparent"}
+                                paddingLeft={"15"}
+                                center={[10, 10]}
+                                absolute
+                            /> */}
+                            {respuestas.map((respuesta)=>{
+                                return(
+                                    <View>
+                                        <Text>{respuesta.pregunta}</Text>
+                                        <PieChart
+                                            data={respuesta.respuestas}
+                                            width={400}
+                                            height={300}
+                                            chartConfig={chartConfig}
+                                            accessor={"numero"}
+                                            backgroundColor={"transparent"}
+                                            paddingLeft={"15"}
+                                            center={[10, 10]}
+                                            absolute
+                                        />
+                                    </View>
+                                );
+                            })}
+                        </ScrollView>
+                    </View>
+                </View>
+            </ImageBackground>
+        </SafeAreaView>
     );
 }
