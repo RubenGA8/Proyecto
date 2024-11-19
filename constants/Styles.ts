@@ -48,6 +48,27 @@ export const Estilos = StyleSheet.create(
             margin: "2.5%",
         },
 
+        ContenedorMarginal:{
+            marginLeft: "20%",
+            marginTop: "1%",
+            marginBottom: "2.5%",
+        },
+
+        ContenedorAlineado:{
+            alignItems: "flex-start",
+        },
+
+        Scroll:{
+            flex: 1,
+            flexDirection: "row-reverse",
+            justifyContent: "center",
+            backgroundColor: "rgba(156,156,156,0.3)",
+            width: width * 0.75,
+            borderRadius: 10,
+            paddingTop: "2.5%",
+            paddingBottom: "2.5%",
+        },
+
         TextoTitulo:{
             fontFamily: "EABold",
             fontSize: 100 * 0.045,
@@ -55,6 +76,11 @@ export const Estilos = StyleSheet.create(
             textShadowOffset: { width: 5, height: 5 }, // Desplazamiento en x e y
             textShadowRadius: 10, // Desenfoque de la sombra
 
+        },
+
+        TextoDestacable:{
+            fontFamily: "EAMedium",
+            fontSize: height * 0.025,
         },
 
         TextoNormal:{
