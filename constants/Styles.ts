@@ -50,14 +50,9 @@ export const Estilos = StyleSheet.create(
             margin: "2.5%",
         },
 
-        ContenedorMarginal:{
-            marginLeft: "20%",
-            marginTop: "1%",
-            marginBottom: "2.5%",
-        },
-
-        ContenedorAlineado:{
-            alignItems: "flex-start",
+        ContenedorFlex:{
+            flex: 1,
+            justifyContent: "center",
         },
 
         Scroll:{
