@@ -6,8 +6,8 @@ export const Estilos = StyleSheet.create(
             flex: 1,
             justifyContent: "center",
             alignItems: "center",
-            width: width,
-            height: height,
+            width: 100,
+            height: 200,
         },
 
         Boton:{
@@ -40,7 +40,7 @@ export const Estilos = StyleSheet.create(
 
         TextoTitulo:{
             fontFamily: "EABold",
-            fontSize: height * 0.035,
+            fontSize: 200 * 0.035,
         },
 
         TextoNormal:{
