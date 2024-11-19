@@ -13,6 +13,7 @@ export default function Index() {
   function click(){
     console.log("dentro de encuesta");
     console.log(preguntas);
+    router.navigate('/resultados');
   }
 
   return (
