@@ -3,7 +3,6 @@ import { useContext, useState } from 'react';
 import { Estilos } from "@/constants/Styles";
 import { endpoints } from "@/constants/endpoints";
 import { ContextEncuesta } from "./context";
-import { Link, router } from 'expo-router';
 
 export default function Index() {
 
@@ -69,8 +68,8 @@ export default function Index() {
       response => response.json()
     ).then(
       data => {
-        console.log('pregunta guardada:',data['pregunta_id'][0][0]);
-        setPreguntaId(data['pregunta_id'][0][0]);
+        console.log('pregunta guardada:',data);
+        setPreguntaId(data['pregunta_id'][0]);
         console.log('iddddd->', preguntaId);
       }
     )
@@ -84,7 +83,7 @@ export default function Index() {
     if(preguntaVal != '' && respuesta1Val != '' && respuesta2Val != '' && respuesta3Val != '' && respuesta4Val != '' ){
 
       const con = guardarPregunta();
-      console.log(con)
+
       console.log("Guardar respuestas (id)",preguntaId);
 
       var form2 = new FormData();
@@ -112,7 +111,6 @@ export default function Index() {
           setRespuesta3Val('');
           setRespuesta4Val('');
           getPreguntas();
-          setPreguntaId(parseInt(preguntaId)+1);
         }
       )
       console.log('fin');
@@ -198,10 +196,6 @@ export default function Index() {
   const [preguntas, setPreguntas] = useState([]);
   const [hayPreguntas, setHayPreguntas] = useState(false);
 
-  function guardarEncuesta(){
-    console.log(encuesta);
-    router.navigate('/encuesta');
-  }
 
   return (
     <View style={Estilos.Principal}>
@@ -230,7 +224,7 @@ export default function Index() {
                   </View>
                 );
               })}
-              <Pressable style={Estilos.Boton} onPress={guardarEncuesta}><Text>Guardar encuesta</Text></Pressable>
+              <Pressable style={Estilos.Boton}><Text>Guardar encuesta</Text></Pressable>
             </View>
           ):undefined}
         </View>
