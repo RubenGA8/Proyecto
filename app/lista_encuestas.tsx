@@ -40,10 +40,6 @@ export default function Index() {
     const [hayEncuestas, setHayEncuestas] = useState(false);
     const {encuesta, setEncuesta} = useContext(ContextEncuesta);
 
-    const Extraibles = {
-
-    }
-
     function verInfo(){
         console.log(encuestas);
     }
@@ -129,7 +125,7 @@ export default function Index() {
         <View style={Estilos.ContenedorScroll} >
             {hayEncuestas?(
                 <View>
-                    <ScrollView style={Estilos.ContenedorScroll} showsVerticalScrollIndicator={false}>
+                    <FlatList data={encuestas}>
                         {encuestas.map((encuesta)=>{
                             return (
                                 <View key={encuesta.id}>
@@ -139,10 +135,10 @@ export default function Index() {
                                 </View>
                             );
                         })}
-                    </ScrollView>
+                    </FlatList>
                 </View>
             ):undefined}
-        </View>
+            </View>
     </SafeAreaView>
   );
 }
