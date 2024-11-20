@@ -28,33 +28,35 @@ export default function Index() {
     setAgregarPregunta(current => (current === false ? true : false));
   }
   const toggleEncuesta = async () => {
-    const form = new FormData();
-    form.append('encuesta', encuestaVal);
-    console.log(form);
-    fetch(endpoints.GUARDARENCUESTA, {
-      method: 'POST',
-      body: form,
-    }).then(
-      response => response.json()
-    ).then(
-      data =>{
-        console.log(data);
-        setEncuestaId(data['encuestaId']);
-      }
-    )
-
-    setEncuestaCreada(current => (current === false ? true : false));
-
-    fetch(endpoints.LASTID, {
-      method: 'POST',
-    }).then(
-      response => response.json()
-    ).then(
-      data => {
-        console.log(data);
-        setPreguntaId(data['id']);
-      }
-    )
+    if(encuestaVal != ''){
+      const form = new FormData();
+      form.append('encuesta', encuestaVal);
+      console.log(form);
+      fetch(endpoints.GUARDARENCUESTA, {
+        method: 'POST',
+        body: form,
+      }).then(
+        response => response.json()
+      ).then(
+        data =>{
+          console.log(data);
+          setEncuestaId(data['encuestaId']);
+        }
+      )
+  
+      setEncuestaCreada(current => (current === false ? true : false));
+  
+      fetch(endpoints.LASTID, {
+        method: 'POST',
+      }).then(
+        response => response.json()
+      ).then(
+        data => {
+          console.log(data);
+          setPreguntaId(data['id']);
+        }
+      )
+    }
   }
   
   // const [encuesta, setEncuesta] = useState(leerArchivo);

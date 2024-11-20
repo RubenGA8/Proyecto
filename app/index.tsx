@@ -51,11 +51,11 @@ export default function Index() {
               </Pressable>
             </Link>
             
-            <Link href='/crear'>
+            {/* <Link href='/crear'>
               <Pressable onPress={onButtonCrear} style={Estilos.Boton}>
                 <Text style={Estilos.TextoDestacable}>Pruebas</Text>
               </Pressable>
-            </Link>
+            </Link> */}
           </View>
         </View>
       {/* <Pressable onPress={onButtonCrear}><Text>Crear Lista</Text></Pressable> */}
