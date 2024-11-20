@@ -33,7 +33,7 @@ export default function Index() {
       <ImageBackground source={require("../assets/images/FondoPrincipal.png")} resizeMode="cover" style={Estilos.ImagenFondo}>
         <View style={Estilos.ContenedorFlex}>
           <View style={Estilos.ContenedorTitulos}>
-            <Text style={Estilos.TextoTitulo}>ChúpalaGordo</Text>
+            <Text style={Estilos.TextoTitulo}>In-Terroga</Text>
           </View>
         </View>
 
@@ -41,13 +41,13 @@ export default function Index() {
           <View style={Estilos.Contenedor}>
             <Link href='/crear'>
               <Pressable onPress={onButtonEdit} style={Estilos.Boton}>
-                <Text style={Estilos.TextoDestacable}>Crear encuesta</Text>
+                <Text style={Estilos.TextoDestacable}>Crear encuesta </Text>
               </Pressable>
             </Link>
 
             <Link href='/lista_encuestas'>
               <Pressable onPress={onButtonList} style={Estilos.Boton}>
-                <Text style={Estilos.TextoDestacable}>Lista encuestas</Text>
+                <Text style={Estilos.TextoDestacable}>Lista encuestas </Text>
               </Pressable>
             </Link>
             

@@ -10,6 +10,7 @@ export default function RootLayout() {
                 <Stack.Screen name='crear' options={{headerShown: false}} />
                 <Stack.Screen name='lista_encuestas' options={{headerShown: false}} />
                 <Stack.Screen name='encuesta' options={{headerShown: false}} />
+                <Stack.Screen name='resultados' options={{headerShown: false}} />
             </Stack>
         </ContextEncuestaProvider>
     );

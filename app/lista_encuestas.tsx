@@ -203,7 +203,6 @@ export default function Index() {
         <ImageBackground source={require("../assets/images/FondoEncuestas.png")} resizeMode="cover" style={Estilos.ImagenFondo}>
             <View style={Estilos.ContenedorTitulos}>
                 <Text style={Estilos.TextoTitulo}>Encuestas</Text>
-                <Pressable onPress={verInfo}><Text>Hola</Text></Pressable>
             </View>
             <View style={Estilos.ContenedorScroll} >
                 {hayEncuestas?(
@@ -216,7 +215,7 @@ export default function Index() {
                                             <Text style={Estilos.TextoNormal}>{encuesta.nombre}</Text>
                                         </Pressable>
                                         <Pressable style={Estilos.Boton} onPress={()=>onPressGrafica(encuesta.id, encuesta.nombre)}>
-                                            <Text>Ver graficas</Text>
+                                            <Text style={Estilos.TextoNormal}>Ver graficas</Text>
                                         </Pressable>
                                     </View>
                                 );
