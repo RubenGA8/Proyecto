@@ -114,7 +114,7 @@ export default function Index() {
         {encuestaEnviada?(
           <View style={Estilos.Contenedor}>
             <Text style={Estilos.TextoNormal}>Encuesta enviada</Text>
-            <Pressable onPress={otraRespuesta} style={Estilos.Boton}><Text>Voler a contestar</Text></Pressable>
+            <Pressable onPress={otraRespuesta} style={Estilos.Boton}><Text style={Estilos.TextoNormal}>Volver a contestar</Text></Pressable>
           </View>
         ):(
           <View style={Estilos.ContenedorScroll}>

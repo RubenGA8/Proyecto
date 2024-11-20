@@ -47,7 +47,7 @@ export default function Index() {
     color: (opacity = 1) => `rgba(26, 255, 146, ${opacity})`,
     strokeWidth: 2, // optional, default 3
     barPercentage: 0.5,
-    useShadowColorFromDataset: false // optional
+    useShadowColorFromDataset: false, // optional
     };
 
     function ingresar(){
@@ -68,7 +68,10 @@ export default function Index() {
                                     {respuestas.map((respuesta)=>{
                                         return(
                                             <View key={respuesta.pregunta_id}>
+                                                <View style={Estilos.Contenedor}>
                                                 <Text style={Estilos.TextoNormal}>{respuesta.pregunta}</Text>
+                                                </View>
+
                                                 <PieChart
                                                     data={respuesta.respuestas}
                                                     width={300}

@@ -243,7 +243,11 @@ export default function Index() {
 
                       <Pressable style={Estilos.Boton} onPress={onButtonGuardar}><Text style={Estilos.TextoNormal}>Guardar pregunta</Text></Pressable>
                       {/* <Pressable onPress={getPreguntas}><Text>get preguntas</Text></Pressable> */}
-                      {minPreguntas?(<Text>Se necesitan al menos 5 preguntas.</Text>):undefined}
+                      {minPreguntas?(
+                          <View style={Estilos.Contenedor}>
+                          <Text style={Estilos.TextoNormalObligado}>Se necesitan al menos 5 preguntas.</Text>
+                          </View>
+                      ):undefined}
                       <Pressable style={Estilos.Boton} onPress={guardarEncuesta}><Text style={Estilos.TextoNormal}>Guardar encuesta</Text></Pressable>
 
                       <View style={Estilos.ContenedorScroll}>
