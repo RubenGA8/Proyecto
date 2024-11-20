@@ -85,12 +85,12 @@ export default function Index() {
                             /> */}
                             {respuestas.map((respuesta)=>{
                                 return(
-                                    <View>
+                                    <View key={respuesta.pregunta_id}>
                                         <Text>{respuesta.pregunta}</Text>
                                         <PieChart
                                             data={respuesta.respuestas}
-                                            width={400}
-                                            height={300}
+                                            width={300}
+                                            height={200}
                                             chartConfig={chartConfig}
                                             accessor={"numero"}
                                             backgroundColor={"transparent"}

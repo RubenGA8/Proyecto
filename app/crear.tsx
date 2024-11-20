@@ -1,48 +1,51 @@
 import { Text, View, Pressable, TextInput } from "react-native";
-import { useState } from 'react';
+import { useState, useMemo, useContext } from 'react';
 import { Estilos } from "@/constants/Styles";
 import { endpoints } from "@/constants/endpoints";
+import RadioGroup, {RadioButtonProps} from 'react-native-radio-buttons-group';
+import { ContextEncuesta } from "./context";
 
 export default function Index(){
-    const [encuestaCreada, setEncuestaCreada] = useState(false);
-    const [encuestaVal, setEncuestaVal] = useState('');
-    const [preguntaVal, setPreguntaVal] = useState('');
-    const [respuesta1Val, setRespuesta1Val] = useState('');
-    const [respuesta2Val, setRespuesta2Val] = useState('');
-    const [respuesta3Val, setRespuesta3Val] = useState('');
-    const [respuesta4Val, setRespuesta4Val] = useState('');
-    const [encuesta, setEncuesta] = useState([])
+    const {encuesta, setEncuesta} = useContext(ContextEncuesta);
+    const [preguntas, setPreguntas] = useState(quitaColor);
 
+    const [data] = useState([{id: '3', label: 'Option 1 data',value: 'option1'},{id: '4',label: 'Option 2 data',value: 'option2'}]);
+    const [selectedId, setSelectedId] = useState<string | undefined>();
+    const [selectedId2, setSelectedId2] = useState<string | undefined>();
 
-    function toggleEncuesta(){
-        var aux: any[] = [];
-        
-        setEncuestaCreada(true);
+    function quitaColor(){
+        var pregs = encuesta['preguntas'];
+        for(var i in pregs){
+            for(var j in pregs[i]['respuestas']){
+                delete pregs[i]['respuestas'][j].color;
+            }
+        }
+        return pregs;
+    }
+    
+    function click(){
+        console.log(arreglo);
+        setArreglo((arreglo[1] = '3'));
     }
 
-    function onButtonGuardar(){
-        
-    }
+    const [arreglo, setArreglo] = useState(['','','','']);
 
     return(
         <View style={Estilos.Principal}>
-            {encuestaCreada?(
-                <View>
-                    <Text>{encuestaVal}</Text>
-                    <TextInput placeholder='Pregunta' onChangeText={setPreguntaVal}></TextInput>
-                    <TextInput placeholder='Respuesta 1' onChangeText={setRespuesta1Val}></TextInput>
-                    <TextInput placeholder='Respuesta 2' onChangeText={setRespuesta2Val}></TextInput>
-                    <TextInput placeholder='Respuesta 3' onChangeText={setRespuesta3Val}></TextInput>
-                    <TextInput placeholder='Respuesta 4' onChangeText={setRespuesta4Val}></TextInput>
-                    <Pressable onPress={onButtonGuardar}><Text>Guardar pregunta</Text></Pressable>
-                </View>
-            ):(
-                <View>
-                    <Text>Crear encuesta</Text>
-                    <TextInput placeholder='Ingresa el nombre del cuestionario' onChangeText={setEncuestaVal}></TextInput>
-                    <Pressable onPress={toggleEncuesta}><Text>Guardar nombre</Text></Pressable>
-                </View>
-            )}
+            <Pressable onPress={click}>
+                <Text>Hola</Text>
+
+            </Pressable>
+            <RadioGroup 
+                radioButtons={preguntas[0]['respuestas']} 
+                onPress={setSelectedId}
+                selectedId={selectedId}
+            />
+            <RadioGroup 
+                radioButtons={preguntas[1]['respuestas']} 
+                onPress={setSelectedId}
+                selectedId={selectedId}
+            />
         </View>
     );
 }

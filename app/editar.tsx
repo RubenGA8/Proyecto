@@ -19,6 +19,8 @@ export default function Index() {
   const [respuesta4Val, setRespuesta4Val] = useState('');
   const [valor] = useState('');
   const {encuesta, setEncuesta} = useContext(ContextEncuesta);
+  const [preguntasTotales, setPreguntasTotales] = useState(0);
+  const [minPreguntas, setMinPreguntas] = useState(false);
 
 
   
@@ -81,8 +83,10 @@ export default function Index() {
 
   function onButtonGuardar(){
     // setEncuesta("Hola");
+    console.log('fuera de insertar pregunta');
     if(preguntaVal != '' && respuesta1Val != '' && respuesta2Val != '' && respuesta3Val != '' && respuesta4Val != '' ){
-
+      console.log('dentro de insertar pregunta');
+      setPreguntasTotales( preguntasTotales => preguntasTotales + 1 );
       const con = guardarPregunta();
       console.log(con)
       console.log("Guardar respuestas (id)",preguntaId);
@@ -142,11 +146,14 @@ export default function Index() {
         var aux_pregunta_nom;
         for(var i in enc_data){//for de preguntas
             if(id_pregunta == enc_data[i][3]){//si es la misma pregunta
-                aux_pregunta_nom = enc_data[i][0]
+                aux_pregunta_nom = enc_data[i][0];
                 id_pregunta = enc_data[i][3];
                 var aux_respuesta_obj = {
                     respuesta_id: enc_data[i][4],
+                    id: enc_data[i][4],
+                    value: enc_data[i][4],
                     respuesta: enc_data[i][1],
+                    label: enc_data[i][1],
                     numero: enc_data[i][2],
                 };
                 // console.log("---------respuesta---------");
@@ -166,10 +173,14 @@ export default function Index() {
                 id_pregunta = enc_data[i][3];
                 var aux_respuesta_obj = {
                     respuesta_id: enc_data[i][4],
+                    id: enc_data[i][4],
+                    value: enc_data[i][4],
                     respuesta: enc_data[i][1],
+                    label: enc_data[i][1],
                     numero: enc_data[i][2],
+
                 };
-                // console.log("---------respuesta---------");
+                console.log("---------respuesta---------");
                 aux_respuestas.push(aux_respuesta_obj);
             }
             if(enc_data.length == parseInt(i)+1){
@@ -199,8 +210,12 @@ export default function Index() {
   const [hayPreguntas, setHayPreguntas] = useState(false);
 
   function guardarEncuesta(){
-    console.log(encuesta);
-    router.navigate('/encuesta');
+    if(preguntasTotales >= 5){
+      console.log(encuesta);
+      router.navigate('/encuesta');
+    }else{
+      setMinPreguntas(true);
+    }
   }
 
   return (
@@ -214,6 +229,9 @@ export default function Index() {
           <TextInput placeholder='Respuesta 2' onChangeText={setRespuesta2Val} value={respuesta2Val}></TextInput>
           <TextInput placeholder='Respuesta 3' onChangeText={setRespuesta3Val} value={respuesta3Val}></TextInput>
           <TextInput placeholder='Respuesta 4' onChangeText={setRespuesta4Val} value={respuesta4Val}></TextInput>
+          {minPreguntas?(
+            <View><Text>Tienen que ser mínimo 5 preguntas.</Text></View>
+          ):undefined}
           <Pressable onPress={onButtonGuardar}><Text>Guardar pregunta</Text></Pressable>
           <Pressable onPress={getPreguntas}><Text>get preguntas</Text></Pressable>
           {hayPreguntas? (

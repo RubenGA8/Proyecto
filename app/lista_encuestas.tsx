@@ -28,10 +28,10 @@ export default function Index() {
                     };
                     res.push(aux);
                 }
-                console.log(res);
-
+                
                 setHayEncuestas(true);
                 setEncuestas(res);
+                console.log(encuestas);
                 return res;
             }
         )
@@ -69,7 +69,10 @@ export default function Index() {
                         id_pregunta = enc_data[i][3];
                         var aux_respuesta_obj = {
                             respuesta_id: enc_data[i][4],
+                            id: enc_data[i][4],
+                            value: enc_data[i][4],
                             respuesta: enc_data[i][1],
+                            label: enc_data[i][1],
                             numero: enc_data[i][2],
                         };
                         // console.log("---------respuesta---------");
@@ -89,7 +92,10 @@ export default function Index() {
                         id_pregunta = enc_data[i][3];
                         var aux_respuesta_obj = {
                             respuesta_id: enc_data[i][4],
+                            id: enc_data[i][4],
+                            value: enc_data[i][4],
                             respuesta: enc_data[i][1],
+                            label: enc_data[i][1],
                             numero: enc_data[i][2],
                         };
                         // console.log("---------respuesta---------");
@@ -126,7 +132,7 @@ export default function Index() {
                 {hayEncuestas?(
                     <View>
                         <ScrollView showsVerticalScrollIndicator={false}>
-                            {encuestas.map((encuesta)=>{
+                            { encuestas.map((encuesta)=>{
                                 return (
                                     <View key={encuesta.id}>
                                         <Pressable style={Estilos.Boton} onPress={()=>onPressLista(encuesta.id, encuesta.nombre)}>
