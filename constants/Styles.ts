@@ -19,6 +19,14 @@ export const Estilos = StyleSheet.create(
             width: width,
         },
 
+        CajaTexto:{
+            backgroundColor: "rgba(0,0,0,0.13)",
+            height: "auto",
+            borderRadius: 10,
+            margin: "0.5%",
+            fontFamily: "EARegular",
+        },
+
         Boton:{
             flexDirection: "row",
             backgroundColor: "#FFCA00",
