@@ -112,10 +112,9 @@ export default function Index() {
           <Text style={Estilos.TextoTitulo}>{encuesta["encuesta"]}</Text>
         </View>
         {encuestaEnviada?(
-          <View>
-            <Text>Encuesta enviada</Text>
+          <View style={Estilos.Contenedor}>
+            <Text style={Estilos.TextoNormal}>Encuesta enviada</Text>
             <Pressable onPress={otraRespuesta} style={Estilos.Boton}><Text>Voler a contestar</Text></Pressable>
-            {/* <Pressable onPress={onButtonResultados} style={Estilos.Boton}><Text>Ver respuestas</Text></Pressable> */}
           </View>
         ):(
           <View style={Estilos.ContenedorScroll}>
@@ -275,7 +274,9 @@ export default function Index() {
                 <Text style={Estilos.TextoNormalObligado}>Faltan por contestar preguntas.</Text>
                 </View>
             ):undefined}
-            <Pressable onPress={guardarRespuestas} style={Estilos.Boton}><Text style={Estilos.TextoNormal}>Enviar encuesta.</Text></Pressable>
+            <View style={Estilos.Contenedor}>
+            <Pressable onPress={guardarRespuestas} style={Estilos.Boton}><Text style={Estilos.TextoNormal}>Enviar encuesta </Text></Pressable>
+            </View>
             </ScrollView>
           </View>
         )}
