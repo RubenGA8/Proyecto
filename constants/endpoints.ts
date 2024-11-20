@@ -8,5 +8,6 @@ export const endpoints = {
     GUARDARPREGUNTA: `${BASE_URL}/guardar_pregunta`,
     GUARDARRESPUESTA: `${BASE_URL}/guardar_respuesta`,
     LASTID: `${BASE_URL}/last_id`,
-    PREGUNTAS: `${BASE_URL}/get_preguntas`
+    PREGUNTAS: `${BASE_URL}/get_preguntas`,
+    UPDATERESPUESTA: `${BASE_URL}/update_respuesta`
 }
