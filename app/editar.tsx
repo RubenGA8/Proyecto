@@ -1,4 +1,4 @@
-import { Text, View, Pressable, TextInput } from "react-native";
+import { Text, View, Pressable, TextInput, ImageBackground, ScrollView } from "react-native";
 import { useContext, useState } from 'react';
 import { Estilos } from "@/constants/Styles";
 import { endpoints } from "@/constants/endpoints";
@@ -220,45 +220,58 @@ export default function Index() {
 
   return (
     <View style={Estilos.Principal}>
-      {encuestaCreada? (
-        <View>
-          {/* <Pressable onPress={toggleAgregarPregunta}><Text>Agragar pregunta +</Text></Pressable> */}
-          <Text>Pregunta id: {preguntaId}</Text>
-          <TextInput placeholder='Pregunta' onChangeText={setPreguntaVal} value={preguntaVal}></TextInput>
-          <TextInput placeholder='Respuesta 1' onChangeText={setRespuesta1Val} value={respuesta1Val}></TextInput>
-          <TextInput placeholder='Respuesta 2' onChangeText={setRespuesta2Val} value={respuesta2Val}></TextInput>
-          <TextInput placeholder='Respuesta 3' onChangeText={setRespuesta3Val} value={respuesta3Val}></TextInput>
-          <TextInput placeholder='Respuesta 4' onChangeText={setRespuesta4Val} value={respuesta4Val}></TextInput>
-          {minPreguntas?(
-            <View><Text>Tienen que ser mínimo 5 preguntas.</Text></View>
-          ):undefined}
-          <Pressable onPress={onButtonGuardar}><Text>Guardar pregunta</Text></Pressable>
-          <Pressable onPress={getPreguntas}><Text>get preguntas</Text></Pressable>
-          {hayPreguntas? (
-            //tienes que hacer la funcion de que ya existen preguntas y otra funcion para que regtrese el for de como se verían las preguntas. desto lo regresa ya como html
+        <ImageBackground source={require("../assets/images/FondoCrear.png")} resizeMode="cover" style={Estilos.ImagenFondo}>
             <View>
-              {preguntas.map((preg) => {
-                return(
-                  <View key={preg.pregunta_id}>
-                    <Text>{preg.pregunta}</Text>
-                    <Text>R1. {preg.respuestas[0]['respuesta']}</Text>
-                    <Text>R2. {preg.respuestas[1]['respuesta']}</Text>
-                    <Text>R3. {preg.respuestas[2]['respuesta']}</Text>
-                    <Text>R4. {preg.respuestas[3]['respuesta']}</Text>
-                  </View>
-                );
-              })}
-              <Pressable style={Estilos.Boton} onPress={guardarEncuesta}><Text>Guardar encuesta</Text></Pressable>
+                <View style={Estilos.ContenedorTitulos}>
+                    <Text style={Estilos.TextoTitulo}>Crear encuesta</Text>
+                </View>
+
+                <View style={Estilos.Contenedor}>
+                  {encuestaCreada? (
+                    <View >
+                      <Text style={Estilos.TextoSubtitulo}>Pregunta id: {preguntaId}</Text>
+
+                      <TextInput style={Estilos.CajaTexto} placeholder='Pregunta' onChangeText={setPreguntaVal} value={preguntaVal}></TextInput>
+                      <TextInput style={Estilos.CajaTexto} placeholder='Respuesta  1' onChangeText={setRespuesta1Val} value={respuesta1Val}></TextInput>
+                      <TextInput style={Estilos.CajaTexto} placeholder='Respuesta  2' onChangeText={setRespuesta2Val} value={respuesta2Val}></TextInput>
+                      <TextInput style={Estilos.CajaTexto} placeholder='Respuesta  3' onChangeText={setRespuesta3Val} value={respuesta3Val}></TextInput>
+                      <TextInput style={Estilos.CajaTexto} placeholder='Respuesta  4' onChangeText={setRespuesta4Val} value={respuesta4Val}></TextInput>
+
+                      <Pressable style={Estilos.Boton} onPress={onButtonGuardar}><Text style={Estilos.TextoNormal}>Guardar pregunta</Text></Pressable>
+                      <Pressable onPress={getPreguntas}><Text>get preguntas</Text></Pressable>
+
+                      <View style={Estilos.ContenedorScroll}>
+                      {hayPreguntas? (
+                        //tienes que hacer la funcion de que ya existen preguntas y otra funcion para que regtrese el for de como se verían las preguntas. desto lo regresa ya como html
+                          <View>
+                          <ScrollView>
+                              {preguntas.map((preg) => {
+                                return(
+                                  <View key={preg.pregunta_id}>
+                                    <Text style={Estilos.TextoNormal} >{preg.pregunta}</Text>
+                                    <Text style={Estilos.TextoNormal} >R1. {preg.respuestas[0]['respuesta']}</Text>
+                                    <Text style={Estilos.TextoNormal} >R2. {preg.respuestas[1]['respuesta']}</Text>
+                                    <Text style={Estilos.TextoNormal} >R3. {preg.respuestas[2]['respuesta']}</Text>
+                                    <Text style={Estilos.TextoNormal} >R4. {preg.respuestas[3]['respuesta']}</Text>
+                                  </View>
+                                );
+                              })}
+                              <Pressable style={Estilos.Boton} onPress={guardarEncuesta}><Text style={Estilos.TextoNormal}>Guardar encuesta</Text></Pressable>
+                            </ScrollView>
+                          </View>
+                      ):undefined}
+                      </View>
+                    </View>
+
+                  ):(
+                    <View>
+                      <TextInput style={Estilos.TextoNormal} placeholder='Ingresa el nombre del cuestionario' onChangeText={setEncuestaVal}></TextInput>
+                      <Pressable style={Estilos.Boton} onPress={toggleEncuesta}><Text style={Estilos.TextoNormal}>Guardar nombre</Text></Pressable>
+                    </View>
+                  )}
+                </View>
             </View>
-          ):undefined}
-        </View>
-        
-      ):(
-        <View>
-          <TextInput placeholder='Ingresa el nombre del cuestionario' onChangeText={setEncuestaVal}></TextInput>
-          <Pressable onPress={toggleEncuesta}><Text>Guardar nombre</Text></Pressable>
-        </View>
-      )}
+        </ImageBackground>
     </View>
   );
 }

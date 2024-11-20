@@ -1,5 +1,5 @@
-import { Text, View, Pressable, TextInput } from "react-native";
 import { useState, useMemo, useContext } from 'react';
+import { Text, View, Pressable, TextInput, ImageBackground } from "react-native";
 import { Estilos } from "@/constants/Styles";
 import { endpoints } from "@/constants/endpoints";
 import RadioGroup, {RadioButtonProps} from 'react-native-radio-buttons-group';
@@ -46,6 +46,7 @@ export default function Index(){
                 onPress={setSelectedId}
                 selectedId={selectedId}
             />
+
         </View>
     );
 }

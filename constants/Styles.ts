@@ -19,6 +19,14 @@ export const Estilos = StyleSheet.create(
             width: width,
         },
 
+        CajaTexto:{
+            backgroundColor: "rgba(0,0,0,0.13)",
+            height: "auto",
+            borderRadius: 10,
+            margin: "0.5%",
+            fontFamily: "EARegular",
+        },
+
         Boton:{
             flexDirection: "row",
             backgroundColor: "#FFCA00",
@@ -69,6 +77,14 @@ export const Estilos = StyleSheet.create(
         TextoTitulo:{
             fontFamily: "EABold",
             fontSize: height * 0.045,
+            textShadowColor: 'rgba(0,0,0,0.4)', // Color de la sombra
+            textShadowOffset: { width: 5, height: 5 }, // Desplazamiento en x e y
+            textShadowRadius: 10, // Desenfoque de la sombra
+        },
+
+        TextoSubtitulo:{
+            fontFamily: "EASemiBold",
+            fontSize: height * 0.03,
             textShadowColor: 'rgba(0,0,0,0.4)', // Color de la sombra
             textShadowOffset: { width: 5, height: 5 }, // Desplazamiento en x e y
             textShadowRadius: 10, // Desenfoque de la sombra
