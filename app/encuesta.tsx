@@ -260,7 +260,7 @@ export default function Index() {
                   </View>
                 </View>
               ):undefined}
-            <Pressable onPress={onButtonResultados} style={Estilos.Boton}><Text>Ver respuestas</Text></Pressable>
+            {/* <Pressable onPress={onButtonResultados} style={Estilos.Boton}><Text>Ver respuestas</Text></Pressable> */}
             {incompleto?(<Text>Faltan por contestar preguntas.</Text>):undefined}
             <Pressable onPress={guardarRespuestas} style={Estilos.Boton}><Text>Enviar encuesta.</Text></Pressable>
             </ScrollView>
