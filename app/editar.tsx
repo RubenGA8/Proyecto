@@ -86,6 +86,7 @@ export default function Index() {
     console.log('fuera de insertar pregunta');
     if(preguntaVal != '' && respuesta1Val != '' && respuesta2Val != '' && respuesta3Val != '' && respuesta4Val != '' ){
       console.log('dentro de insertar pregunta');
+      setMinPreguntas(false);
       setPreguntasTotales( preguntasTotales => preguntasTotales + 1 );
       const con = guardarPregunta();
       console.log(con)
@@ -214,6 +215,7 @@ export default function Index() {
       console.log(encuesta);
       router.navigate('/encuesta');
     }else{
+      console.log('no se llega al minimo');
       setMinPreguntas(true);
     }
   }
@@ -229,7 +231,7 @@ export default function Index() {
                 <View style={Estilos.Contenedor}>
                   {encuestaCreada? (
                     <View >
-                      <Text style={Estilos.TextoSubtitulo}>Pregunta id: {preguntaId}</Text>
+                      <Text style={Estilos.TextoSubtitulo}>Insertar pregunta:</Text>
 
                       <TextInput style={Estilos.CajaTexto} placeholder='Pregunta' onChangeText={setPreguntaVal} value={preguntaVal}></TextInput>
                       <TextInput style={Estilos.CajaTexto} placeholder='Respuesta  1' onChangeText={setRespuesta1Val} value={respuesta1Val}></TextInput>
@@ -238,12 +240,14 @@ export default function Index() {
                       <TextInput style={Estilos.CajaTexto} placeholder='Respuesta  4' onChangeText={setRespuesta4Val} value={respuesta4Val}></TextInput>
 
                       <Pressable style={Estilos.Boton} onPress={onButtonGuardar}><Text style={Estilos.TextoNormal}>Guardar pregunta</Text></Pressable>
-                      <Pressable onPress={getPreguntas}><Text>get preguntas</Text></Pressable>
+                      {/* <Pressable onPress={getPreguntas}><Text>get preguntas</Text></Pressable> */}
+                      {minPreguntas?(<Text>Se necesitan al menos 5 preguntas.</Text>):undefined}
+                      <Pressable style={Estilos.Boton} onPress={guardarEncuesta}><Text style={Estilos.TextoNormal}>Guardar encuesta</Text></Pressable>
 
                       <View style={Estilos.ContenedorScroll}>
                       {hayPreguntas? (
                         //tienes que hacer la funcion de que ya existen preguntas y otra funcion para que regtrese el for de como se verían las preguntas. desto lo regresa ya como html
-                          <View>
+                        <View>
                           <ScrollView>
                               {preguntas.map((preg) => {
                                 return(
@@ -256,7 +260,6 @@ export default function Index() {
                                   </View>
                                 );
                               })}
-                              <Pressable style={Estilos.Boton} onPress={guardarEncuesta}><Text style={Estilos.TextoNormal}>Guardar encuesta</Text></Pressable>
                             </ScrollView>
                           </View>
                       ):undefined}
