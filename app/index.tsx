@@ -50,6 +50,12 @@ export default function Index() {
                 <Text style={Estilos.TextoDestacable}>Lista encuestas</Text>
               </Pressable>
             </Link>
+            
+            <Link href='/crear'>
+              <Pressable onPress={onButtonCrear} style={Estilos.Boton}>
+                <Text style={Estilos.TextoDestacable}>Pruebas</Text>
+              </Pressable>
+            </Link>
           </View>
         </View>
       {/* <Pressable onPress={onButtonCrear}><Text>Crear Lista</Text></Pressable> */}
