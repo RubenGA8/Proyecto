@@ -51,6 +51,11 @@ export const Estilos = StyleSheet.create(
             justifyContent: "center",
         },
 
+        ContenedorEnLinea:{
+            flexDirection: 'row',
+            justifyContent: 'space-between',
+        },
+
         Contenedor:{
             //flex: 2,
             justifyContent: "center",
@@ -61,6 +66,13 @@ export const Estilos = StyleSheet.create(
         ContenedorFlex:{
             flex: 1,
             justifyContent: "center",
+        },
+
+        ContenedorCentrado:{
+            //flex: 2,
+            width: "50%",
+            justifyContent: "center",
+            //alignItems: "center",
         },
 
         Scroll:{
