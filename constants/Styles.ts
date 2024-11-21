@@ -29,7 +29,7 @@ export const Estilos = StyleSheet.create(
 
         Boton:{
             flexDirection: "row",
-            backgroundColor: "#FFCA00",
+            backgroundColor: "#A6D882",
             borderRadius: 7,
             margin: "3%",
             padding: "2.5%",
