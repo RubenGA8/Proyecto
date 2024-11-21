@@ -210,13 +210,20 @@ export default function Index() {
                         <ScrollView showsVerticalScrollIndicator={false}>
                             { encuestas.map((encuesta)=>{
                                 return (
-                                    <View key={encuesta.id}>
-                                        <Pressable style={Estilos.Boton} onPress={()=>onPressLista(encuesta.id, encuesta.nombre)}>
-                                            <Text style={Estilos.TextoNormal}>{encuesta.nombre}</Text>
-                                        </Pressable>
-                                        <Pressable style={Estilos.Boton} onPress={()=>onPressGrafica(encuesta.id, encuesta.nombre)}>
-                                            <Text style={Estilos.TextoNormal}>Ver graficas</Text>
-                                        </Pressable>
+                                    <View key={encuesta.id} >
+                                        <View style={Estilos.ContenedorEnLinea}>
+                                            <View style={Estilos.ContenedorCentrado}>
+                                                <Pressable style={Estilos.Boton} onPress={()=>onPressLista(encuesta.id, encuesta.nombre)}>
+                                                    <Text style={Estilos.TextoNormal}>{encuesta.nombre}</Text>
+                                                </Pressable>
+                                            </View>
+
+                                            <View>
+                                                <Pressable style={Estilos.Boton} onPress={()=>onPressGrafica(encuesta.id, encuesta.nombre)}>
+                                                    <Text style={Estilos.TextoNormal}>Ver graficas</Text>
+                                                </Pressable>
+                                            </View>
+                                        </View>
                                     </View>
                                 );
                             })}
