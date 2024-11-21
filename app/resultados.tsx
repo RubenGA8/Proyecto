@@ -47,7 +47,7 @@ export default function Index() {
     color: (opacity = 1) => `rgba(26, 255, 146, ${opacity})`,
     strokeWidth: 2, // optional, default 3
     barPercentage: 0.5,
-    useShadowColorFromDataset: false // optional
+    useShadowColorFromDataset: false, // optional
     };
 
     function ingresar(){
@@ -61,7 +61,6 @@ export default function Index() {
                     <ImageBackground source={require('../assets/images/FondoEncuestas.png')} resizeMode='cover' style={Estilos.ImagenFondo}>
                         <View style={Estilos.ContenedorTitulos}>
                             <Text style={Estilos.TextoTitulo}>{encuesta.encuesta}</Text>
-                            {/* <Pressable onPress={click}><Text>picame</Text></Pressable> */}
                         </View>
                         <View style={Estilos.ContenedorScroll}>
                             <View>
@@ -69,7 +68,10 @@ export default function Index() {
                                     {respuestas.map((respuesta)=>{
                                         return(
                                             <View key={respuesta.pregunta_id}>
-                                                <Text>{respuesta.pregunta}</Text>
+                                                <View style={Estilos.Contenedor}>
+                                                <Text style={Estilos.TextoNormal}>{respuesta.pregunta}</Text>
+                                                </View>
+
                                                 <PieChart
                                                     data={respuesta.respuestas}
                                                     width={300}
@@ -93,9 +95,12 @@ export default function Index() {
                         <View style={Estilos.ContenedorTitulos}>
                             <Text style={Estilos.TextoTitulo}>{encuesta.encuesta}</Text>
                         </View>
-                        <Text>Ingrese la contraseña</Text>
+
+                        <View style={Estilos.Contenedor}>
+                        <Text style={Estilos.TextoNormal}>Ingrese la contraseña</Text>
                         <TextInput style={Estilos.CajaTexto} placeholder='Contraseña' secureTextEntry onChangeText={setContrasena} value={contrasena}></TextInput>
                         <Pressable onPress={ingresar} style={Estilos.Boton}><Text>Ingresar</Text></Pressable>
+                        </View>
                     </ImageBackground>
                 )}
         </SafeAreaView>

@@ -98,5 +98,10 @@ export const Estilos = StyleSheet.create(
         TextoNormal:{
             fontFamily: "EARegular",
         },
+
+        TextoNormalObligado:{
+            fontFamily: "EARegular",
+            color: "#ff0000"
+        },
     }
 )

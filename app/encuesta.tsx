@@ -112,10 +112,9 @@ export default function Index() {
           <Text style={Estilos.TextoTitulo}>{encuesta["encuesta"]}</Text>
         </View>
         {encuestaEnviada?(
-          <View>
-            <Text>Encuesta enviada</Text>
-            <Pressable onPress={otraRespuesta} style={Estilos.Boton}><Text>Voler a contestar</Text></Pressable>
-            {/* <Pressable onPress={onButtonResultados} style={Estilos.Boton}><Text>Ver respuestas</Text></Pressable> */}
+          <View style={Estilos.Contenedor}>
+            <Text style={Estilos.TextoNormal}>Encuesta enviada</Text>
+            <Pressable onPress={otraRespuesta} style={Estilos.Boton}><Text style={Estilos.TextoNormal}>Volver a contestar</Text></Pressable>
           </View>
         ):(
           <View style={Estilos.ContenedorScroll}>
@@ -129,6 +128,7 @@ export default function Index() {
                         radioButtons={preguntas[0].respuestas}
                         onPress={setSelectedId0}
                         selectedId={selectedId0}
+                        labelStyle={Estilos.TextoNormal}
                       />
                     </View>
                   </View>
@@ -143,6 +143,7 @@ export default function Index() {
                         radioButtons={preguntas[1].respuestas}
                         onPress={setSelectedId1}
                         selectedId={selectedId1}
+                        labelStyle={Estilos.TextoNormal}
                       />
                     </View>
                   </View>
@@ -157,6 +158,7 @@ export default function Index() {
                         radioButtons={preguntas[2].respuestas}
                         onPress={setSelectedId2}
                         selectedId={selectedId2}
+                        labelStyle={Estilos.TextoNormal}
                       />
                     </View>
                   </View>
@@ -171,6 +173,7 @@ export default function Index() {
                         radioButtons={preguntas[3].respuestas}
                         onPress={setSelectedId3}
                         selectedId={selectedId3}
+                        labelStyle={Estilos.TextoNormal}
                       />
                     </View>
                   </View>
@@ -185,6 +188,7 @@ export default function Index() {
                         radioButtons={preguntas[4].respuestas}
                         onPress={setSelectedId4}
                         selectedId={selectedId4}
+                        labelStyle={Estilos.TextoNormal}
                       />
                     </View>
                   </View>
@@ -199,6 +203,7 @@ export default function Index() {
                         radioButtons={preguntas[5].respuestas}
                         onPress={setSelectedId5}
                         selectedId={selectedId5}
+                        labelStyle={Estilos.TextoNormal}
                       />
                     </View>
                   </View>
@@ -213,6 +218,7 @@ export default function Index() {
                         radioButtons={preguntas[6].respuestas}
                         onPress={setSelectedId6}
                         selectedId={selectedId6}
+                        labelStyle={Estilos.TextoNormal}
                       />
                     </View>
                   </View>
@@ -227,6 +233,7 @@ export default function Index() {
                         radioButtons={preguntas[7].respuestas}
                         onPress={setSelectedId7}
                         selectedId={selectedId7}
+                        labelStyle={Estilos.TextoNormal}
                       />
                     </View>
                   </View>
@@ -241,6 +248,7 @@ export default function Index() {
                         radioButtons={preguntas[8].respuestas}
                         onPress={setSelectedId8}
                         selectedId={selectedId8}
+                        labelStyle={Estilos.TextoNormal}
                       />
                     </View>
                   </View>
@@ -255,14 +263,20 @@ export default function Index() {
                         radioButtons={preguntas[9].respuestas}
                         onPress={setSelectedId9}
                         selectedId={selectedId9}
+                        labelStyle={Estilos.TextoNormal}
                       />
                     </View>
                   </View>
                 </View>
               ):undefined}
-            {/* <Pressable onPress={onButtonResultados} style={Estilos.Boton}><Text>Ver respuestas</Text></Pressable> */}
-            {incompleto?(<Text>Faltan por contestar preguntas.</Text>):undefined}
-            <Pressable onPress={guardarRespuestas} style={Estilos.Boton}><Text>Enviar encuesta.</Text></Pressable>
+            {incompleto?(
+                <View style={Estilos.Contenedor}>
+                <Text style={Estilos.TextoNormalObligado}>Faltan por contestar preguntas.</Text>
+                </View>
+            ):undefined}
+            <View style={Estilos.Contenedor}>
+            <Pressable onPress={guardarRespuestas} style={Estilos.Boton}><Text style={Estilos.TextoNormal}>Enviar encuesta </Text></Pressable>
+            </View>
             </ScrollView>
           </View>
         )}
