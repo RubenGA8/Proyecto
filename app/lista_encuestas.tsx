@@ -1,4 +1,4 @@
-import {Text, View, Pressable, Button, ScrollView, FlatList, ImageBackground} from 'react-native';
+import {Text, View, Pressable, Button, ScrollView, FlatList, ImageBackground, ActivityIndicator} from 'react-native';
 import { Link, router } from 'expo-router';
 import { useState, useContext } from 'react'
 import { Estilos } from '@/constants/Styles';
@@ -30,8 +30,10 @@ export default function Index() {
                 }
                 
                 setHayEncuestas(true);
+                encuestasCargandoStart();
                 setEncuestas(res);
                 console.log(encuestas);
+                encuestasCargandoEnd();
                 return res;
             }
         )
@@ -39,9 +41,18 @@ export default function Index() {
     const [encuestas, setEncuestas] = useState(getEncuestas);
     const [hayEncuestas, setHayEncuestas] = useState(false);
     const {encuesta, setEncuesta} = useContext(ContextEncuesta);
+    const [cargando, setCargando] = useState(false);
 
     function verInfo(){
         console.log(encuestas);
+    }
+
+    const encuestasCargandoStart = () => {
+        setCargando(true);
+    }
+
+    const encuestasCargandoEnd = () => {
+        setCargando(false)
     }
 
     function onPressLista(id_lista, nombre_lista){
@@ -205,28 +216,38 @@ export default function Index() {
                 <Text style={Estilos.TextoTitulo}>Encuestas</Text>
             </View>
             <View style={Estilos.ContenedorScroll} >
-                {hayEncuestas?(
+                {hayEncuestas ? (
                     <View>
                         <ScrollView showsVerticalScrollIndicator={false}>
-                            { encuestas.map((encuesta)=>{
-                                return (
-                                    <View key={encuesta.id} >
-                                        <View style={Estilos.ContenedorEnLinea}>
-                                            <View style={Estilos.ContenedorCentrado}>
-                                                <Pressable style={Estilos.Boton} onPress={()=>onPressLista(encuesta.id, encuesta.nombre)}>
-                                                    <Text style={Estilos.TextoNormal}>{encuesta.nombre}</Text>
-                                                </Pressable>
-                                            </View>
-
-                                            <View>
-                                                <Pressable style={Estilos.Boton} onPress={()=>onPressGrafica(encuesta.id, encuesta.nombre)}>
-                                                    <Text style={Estilos.TextoNormal}>Ver graficas</Text>
-                                                </Pressable>
-                                            </View>
+                            {
+                                cargando ?
+                                    (
+                                        <View>
+                                            <ActivityIndicator size="large" color="#A6D882">Cargando...</ActivityIndicator>
                                         </View>
-                                    </View>
-                                );
-                            })}
+                                    )
+                                    :
+                                    (encuestas.map((encuesta)=>{
+                                            return (
+                                                <View key={encuesta.id} >
+                                                    <View style={Estilos.ContenedorEnLinea}>
+                                                        <View style={Estilos.ContenedorCentrado}>
+                                                            <Pressable style={Estilos.Boton} onPress={()=>onPressLista(encuesta.id, encuesta.nombre)}>
+                                                                <Text style={Estilos.TextoNormal}>{encuesta.nombre}</Text>
+                                                            </Pressable>
+                                                        </View>
+
+                                                        <View>
+                                                            <Pressable style={Estilos.Boton} onPress={()=>onPressGrafica(encuesta.id, encuesta.nombre)}>
+                                                                <Text style={Estilos.TextoNormal}>Ver graficas</Text>
+                                                            </Pressable>
+                                                        </View>
+                                                    </View>
+                                                </View>
+                                            );
+                                        }))
+                            }
+
                         </ScrollView>
                     </View>
                 ):undefined}
