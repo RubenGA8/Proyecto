@@ -1,7 +1,7 @@
 {
   "expo": {
     "name": "Proyecto",
-    "slug": "Proyecto",
+    "slug": "proyecto-final",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
@@ -41,8 +41,12 @@
     },
     "extra": {
       "eas": {
-        "projectId": "75f4ad02-0354-48bf-b929-77e542d5de17"
+        "projectId": "09adcf43-9405-4afe-af57-2c47777283b4"
+      },
+      "router": {
+        "origin": false
       }
-    }
+    },
+    "owner": "vallhallax16"
   }
 }

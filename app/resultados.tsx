@@ -11,6 +11,7 @@ export default function Index() {
     const [colores] = useState(['rgba(225,19,19,1)', 'rgba(255, 162, 1, 1)', 'rgba(51, 30, 200, 1)', 'rgba(31, 141, 27, 1)']);
     const [login, setLogin] = useState(false);
     const [contrasena, setContrasena] = useState('');
+    const [PrimeraVez, setPrimeraVez] = useState(true);
 
     function agregarColor(){
         // var aux = encuesta['preguntas'][0]['respuestas'];
@@ -19,6 +20,7 @@ export default function Index() {
         //     aux[parseInt(i)].name = aux[parseInt(i)].respuesta;
         // }
         // return aux;
+        console.log("Login: " + login + " primeravez: " + PrimeraVez);
         console.log('-----encuesta-----');
         console.log(encuesta);
         var preg = encuesta['preguntas']
@@ -48,11 +50,28 @@ export default function Index() {
     strokeWidth: 2, // optional, default 3
     barPercentage: 0.5,
     useShadowColorFromDataset: false, // optional
+    propsForLabels: {
+        fontFamily: "EARegular",
+    },
+    propsForHorizontalLabels: {
+        fontFamily: "EARegular",
+    },
+    propsForVertica1Labe1s : {
+        fontFamily: "EARegular",
+    },
     };
 
     function ingresar(){
         if(contrasena == '12345')
+        {
+            setPrimeraVez(false);
             setLogin(true);
+        }
+        else
+        {
+            setPrimeraVez(false);
+            setLogin(false);
+        }
     }
 
     return(
@@ -99,6 +118,7 @@ export default function Index() {
                         <View style={Estilos.Contenedor}>
                         <Text style={Estilos.TextoNormal}>Ingrese la contraseña</Text>
                         <TextInput style={Estilos.CajaTexto} placeholder='Contraseña' secureTextEntry onChangeText={setContrasena} value={contrasena}></TextInput>
+                        {login === PrimeraVez ? (<Text style={Estilos.TextoNormalObligado}>Contraseña incorrecta</Text>) : undefined}
                         <Pressable onPress={ingresar} style={Estilos.Boton}><Text>Ingresar</Text></Pressable>
                         </View>
                     </ImageBackground>
